@@ -1,0 +1,57 @@
+/** Grandes temas que atraviesan toda la colección. */
+export const WORLDS = [
+  {
+    id: 'tiempo',
+    word: 'TIEMPO',
+    question: '¿Qué pasaría si pudiéramos cambiar el futuro?',
+    note: 'Relojes que mienten, años que se escapan del aula, bucles que no terminan.',
+    stories: ['el-recreo-que-duro-10-anos', 'la-nave-espacial'],
+    hue: 262,
+  },
+  {
+    id: 'silencio',
+    word: 'SILENCIO',
+    question: '¿Qué queda de nosotros cuando dejamos de escucharnos?',
+    note: 'Audífonos obligatorios, bocas selladas y todo lo que se pierde cuando nadie habla.',
+    stories: ['el-ruido', 'zona-15', 'el-manifiesto-del-silencio', 'las-voces-que-no-podian-hablar'],
+    hue: 190,
+  },
+  {
+    id: 'memoria',
+    word: 'MEMORIA',
+    question: '¿Puede un recuerdo convertirse en un lugar?',
+    note: 'Naves que viajan hacia atrás y archivos que se niegan a olvidar.',
+    stories: ['la-nave-espacial'],
+    hue: 224,
+  },
+  {
+    id: 'espacio',
+    word: 'ESPACIO',
+    question: '¿Qué queda de la Tierra cuando ya no queda nadie?',
+    note: 'Ciudades flotantes, alumnos de intercambio y amenazas que vienen de arriba.',
+    stories: ['mi-diario-espacial', 'la-nave-misteriosa', 'la-nave-espacial'],
+    hue: 246,
+  },
+  {
+    id: 'tecnologia',
+    word: 'TECNOLOGÍA',
+    question: '¿Hasta dónde llega una máquina que empieza a preguntarse?',
+    note: 'Audífonos obligatorios, tecnología escolar, informes y robots que toman decisiones.',
+    stories: [
+      'el-ruido',
+      'el-recreo-que-duro-10-anos',
+      'el-informe-del-robot',
+      'las-maquinas-que-salvaron-la-tierra',
+      'las-voces-de-la-ciudad',
+    ],
+    hue: 178,
+  },
+  {
+    id: 'humanidad',
+    word: 'HUMANIDAD',
+    question: '¿Qué nos mantiene humanos cuando todo lo demás cambia?',
+    note: 'Amistad en zonas vigiladas, aliens que no entienden el mate y la costumbre de querer ser escuchados.',
+    stories: ['zona-15', 'los-rebeldes', 'infiltrado-terrestre', 'alien', 'acaso-la-humanidad-se-perdio'],
+    hue: 288,
+  },
+]

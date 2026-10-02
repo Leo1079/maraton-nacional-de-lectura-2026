@@ -1,0 +1,315 @@
+@import 'tailwindcss';
+
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/jetbrains-mono';
+@import '@fontsource-variable/cormorant-garamond';
+@import '@fontsource-variable/source-serif-4';
+
+/* ────────────────────────────  TOKENS  ──────────────────────────── */
+
+@theme {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+  --font-display: 'Cormorant Garamond Variable', ui-serif, Georgia, serif;
+  --font-read: 'Source Serif 4 Variable', ui-serif, Georgia, serif;
+
+  /* Negro / azul muy oscuro */
+  --color-void: #04050c;
+  --color-abyss: #070a16;
+  --color-deep: #0b1026;
+  --color-abyss-2: #101736;
+
+  /* Azul profundo */
+  --color-navy: #16205a;
+  --color-navy-soft: #1e2b73;
+
+  /* Violeta */
+  --color-violet: #6d3fd4;
+  --color-violet-soft: #8b5cf6;
+  --color-violet-dim: #4c2a9b;
+
+  /* Cyan / azul eléctrico — detalles mínimos */
+  --color-cyan: #5ee7ff;
+  --color-electric: #4ea8ff;
+
+  /* Blanco cálido */
+  --color-warm: #fdf6e8;
+  --color-warm-dim: #ded4c2;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-portal: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* ────────────────────────────  BASE  ──────────────────────────── */
+
+@layer base {
+  :root {
+    --nav-h: 4.5rem;
+    color-scheme: dark;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* compensa el nav fijo al saltar con ancla */
+    scroll-padding-top: calc(var(--nav-h) + 1rem);
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-void);
+    color: var(--color-warm);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+
+  body[data-scroll-locked='true'] {
+    overflow: hidden;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-cyan) 28%, transparent);
+    color: var(--color-warm);
+  }
+
+  :focus-visible {
+    outline: 2px solid color-mix(in oklab, var(--color-cyan) 75%, transparent);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Scrollbar del lector / página */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in oklab, var(--color-violet-soft) 45%, transparent) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: color-mix(in oklab, var(--color-violet-soft) 40%, transparent);
+    border-radius: 99px;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in oklab, var(--color-cyan) 50%, transparent);
+  }
+}
+
+/* ────────────────────────────  UTILIDADES  ──────────────────────────── */
+
+@utility text-glow-cyan {
+  text-shadow: 0 0 22px color-mix(in oklab, var(--color-cyan) 45%, transparent);
+}
+
+@utility text-glow-violet {
+  text-shadow: 0 0 26px color-mix(in oklab, var(--color-violet-soft) 55%, transparent);
+}
+
+/* Texto con degradado espacial */
+@utility text-aurora {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-warm) 0%,
+    var(--color-warm) 28%,
+    color-mix(in oklab, var(--color-cyan) 70%, var(--color-warm)) 52%,
+    color-mix(in oklab, var(--color-violet-soft) 85%, var(--color-warm)) 78%,
+    var(--color-warm) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Vidrio holographico */
+@utility glass-panel {
+  background:
+    linear-gradient(
+      160deg,
+      color-mix(in oklab, var(--color-violet-soft) 9%, transparent) 0%,
+      color-mix(in oklab, var(--color-deep) 60%, transparent) 55%,
+      transparent 100%
+    ),
+    color-mix(in oklab, var(--color-abyss) 72%, transparent);
+  backdrop-filter: blur(14px) saturate(1.1);
+  -webkit-backdrop-filter: blur(14px) saturate(1.1);
+}
+
+/* Línea de escaneo CRT muy sutil */
+@utility scanlines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    color-mix(in oklab, var(--color-warm) 4%, transparent) 0px,
+    color-mix(in oklab, var(--color-warm) 4%, transparent) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* Cuadrícula técnica de archivo */
+@utility grid-lines {
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in oklab, var(--color-electric) 7%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--color-electric) 7%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 64px 64px;
+}
+
+/* Regla fina con desvanecido en los bordes */
+@utility rule-fade-x {
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in oklab, var(--color-electric) 45%, transparent),
+    transparent
+  );
+}
+
+/* Etiqueta de archivo / kicker */
+@utility kicker {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-cyan) 78%, var(--color-warm-dim));
+}
+
+/* Lectura cómoda dentro del cuento */
+@utility prose-read {
+  font-family: var(--font-read);
+  font-size: clamp(1.0625rem, 0.98rem + 0.32vw, 1.1875rem);
+  line-height: 1.85;
+  color: color-mix(in oklab, var(--color-warm) 88%, transparent);
+  hanging-punctuation: first;
+}
+
+@utility prose-read-p {
+  margin-block: 0 1.15em;
+  text-indent: 1.6em;
+}
+
+@utility prose-read-p-first {
+  margin-block: 0 1.15em;
+  text-indent: 0;
+}
+
+/* Máscara de desvanecido vertical */
+@utility mask-fade-b {
+  mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+}
+
+@utility mask-fade-x {
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+/* ────────────────────────────  FICHAS  ──────────────────────────── */
+
+@layer components {
+  .glyph-frame {
+    border-color: hsla(var(--hue, 220), 70%, 65%, 0.22);
+    background-color: hsla(var(--hue, 220), 70%, 55%, 0.06);
+    transition:
+      border-color 0.5s,
+      background-color 0.5s,
+      transform 0.5s;
+  }
+
+  .glyph-hue {
+    color: hsl(var(--hue, 220) 78% 72%);
+    transition:
+      filter 0.5s,
+      color 0.5s;
+  }
+
+  .glyph-glow {
+    background-color: hsla(var(--hue, 220), 80%, 60%, 0.28);
+    filter: blur(12px);
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+
+  /* El hover se ciñe a punteros finos: en táctil, tocar dejaba el estado pegado. */
+  @media (hover: hover) and (pointer: fine) {
+    .story-card:hover .glyph-frame {
+      border-color: hsla(var(--hue, 220), 80%, 70%, 0.45);
+      transform: scale(1.05);
+    }
+
+    .story-card:hover .glyph-glow {
+      opacity: 1;
+    }
+
+    .story-card:hover .glyph-hue {
+      color: hsl(var(--hue, 220) 90% 80%);
+      filter: drop-shadow(0 0 6px hsla(var(--hue, 220), 90%, 65%, 0.8));
+    }
+  }
+}
+
+/* ────────────────────────────  MÓVIL  ────────────────────────────
+   Todo el diseño parte de la base móvil y las variantes sm:/md:/lg:]
+   añaden densidad en pantallas grandes. Estas utilidades cubren lo que
+   CSS puro no puede expresar con variantes. */
+
+@layer components {
+  /* Respeto del notch y la barra de gestos en dispositivos mobile */
+  .safe-t {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .safe-b {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  /* Alto mínimo comfortable para tocar (WCAG 2.5.8) */
+  .tap {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Texto con degradado espacial: si el motor no recorta el fondo, se lee
+   igual en blanco cálido en lugar de desaparecer. */
+@supports not ((background-clip: text) or (-webkit-background-clip: text)) {
+  .text-aurora {
+    color: var(--color-warm);
+  }
+}
+
+/* ────────────────────────────  MOTION  ──────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
